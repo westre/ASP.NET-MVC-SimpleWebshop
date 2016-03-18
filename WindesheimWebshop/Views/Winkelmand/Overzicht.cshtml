@@ -1,0 +1,64 @@
+﻿@model WindesheimWebshop.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "Overzicht";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Overzicht</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row header">
+            <div class="col-sm-12">
+                Header
+            </div>
+        </div>
+        @Html.Partial("CategoryNavBar", Model.Categorieen)
+        <div class="row body">
+            <div class="col-sm-12">
+                Klantgegevens: @Model.Klant.Naam, @Model.Klant.Adres, @Model.Klant.Woonplaats
+                
+                <h4>Uw winkelmandje, check het nog even oke</h4>
+                <table class="table">
+                    <tr><th>Product</th><th>Omschrijving</th><th>Aantal</th><th>Prijs</th><th>Bedrag</th><th></th></tr>
+                    @{
+                        double totalPrice = 0;
+                        foreach (var kvp in Model.Winkelmand.Producten) {
+                            var product = kvp.Key;
+                            int amount = kvp.Value;
+                            <tr data-pid="@product.ID">
+                                <td>@product.Naam</td>
+                                <td>@product.Omschrijving</td>
+                                <td>@amount</td>
+                                <td>@product.Prijs</td>
+                                <td>@string.Format("{0:0.##}", Convert.ToDouble(product.Prijs) * amount)</td>
+                                <td><button class="btn btn-default product-remove" data-pid="@product.ID">Verwijder</button></td>
+                            </tr>
+                            totalPrice += Convert.ToDouble(product.Prijs) * amount;
+                        }
+                    }
+                    <tr><td colspan="4"></td><td>Totaal: @totalPrice euro</td><td></td></tr>
+                </table>
+            </div>
+            <div class="col-sm-12">
+                @using(Html.BeginForm()) {
+                    @Html.HiddenFor(m => m.Klant.Naam)
+                    @Html.HiddenFor(m => m.Klant.Adres)
+                    @Html.HiddenFor(m => m.Klant.Woonplaats)
+
+                    <input type="submit" value="Akkoord!" />
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+﻿@model WindesheimWebshop.ViewModels.HomeViewModel
+
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row header">
+            <div class="col-sm-12">
+                Header
+            </div>
+        </div>
+        @Html.Partial("CategoryNavBar", Model.Categorieen)
+        <div class="row body">
+            <div class="col-sm-12">
+                <div class="row sale">
+                    <h1>Aanbiedingen</h1>
+                    @foreach (var item in Model.Aanbiedingen) {
+                        <a href="/Product/@item.Product.ID">
+                            <div class="col-sm-3">
+                                <div class="sale-item panel panel-default">
+                                    <b>@item.Product.Naam</b><br /><br />
+                                    Van: @item.DatumVan<br />
+                                    Tot: @item.DatumTot<br />
+                                    <br />
+                                    <i>@item.ReclameTekst</i>
+                                    <br />
+                                    Van: @item.Product.Prijs EUR
+                                    <br />Voor: @item.Aanbiedingsprijs EUR
+                                </div>        
+                            </div>
+                        </a>
+                    }
+                </div>
+                <div class="row products">
+                    <h1>Producten</h1>
+                    @foreach (var item in Model.Producten) {
+                        <a href="/Product/@item.ID">
+                            <div class="col-sm-2">
+                                <div class="product-item panel panel-default">
+                                    <b>@item.Naam</b><br /><br />
+                                    <i>@item.Omschrijving</i>
+                                    <br />
+                                    <br />Voor: @item.Prijs EUR
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+                Hallo en welkom op mijn webshop!
+                @Html.ActionLink("Ga naar Producten", "Index", "Product")
+            </div>
+        </div>
+    </div>
+</body>
+</html>

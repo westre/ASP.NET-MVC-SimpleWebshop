@@ -1,0 +1,49 @@
+﻿@model WindesheimWebshop.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row header">
+            <div class="col-sm-12">
+                Header
+            </div>
+        </div>
+        @Html.Partial("CategoryNavBar", Model.Categorieen)
+        <div class="row body">
+            <div class="col-sm-12">
+                @using (Html.BeginForm()) {
+                    <div class="input-group">
+                        @Html.ValidationMessageFor(m => m.Klant.Naam)<br/>
+                        @Html.LabelFor(m => m.Klant.Naam)
+                        @Html.TextBoxFor(m => m.Klant.Naam)
+                    </div>
+                    <div class="input-group">
+                        @Html.ValidationMessageFor(m => m.Klant.Adres)<br />
+                        @Html.LabelFor(m => m.Klant.Adres)
+                        @Html.TextBoxFor(m => m.Klant.Adres)
+                    </div>
+                    <div class="input-group">
+                        @Html.ValidationMessageFor(m => m.Klant.Woonplaats)<br />
+                        @Html.LabelFor(m => m.Klant.Woonplaats)
+                        @Html.TextBoxFor(m => m.Klant.Woonplaats)
+                    </div>
+
+                    <input type="submit" value="Bevestigen" />
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+﻿PMC = Tools->Nuget Packet Manager
+
+Install-Package EntityFramework -Version 5.0.0 in PMC
+
+http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs
+http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application
+
+<entityFramework>
+    <contexts>
+      <context type="WindesheimWebshop.DAL.WebshopContext, WindesheimWebshop">
+        <databaseInitializer type="WindesheimWebshop.DAL.WebshopInitializer, WindesheimWebshop" />
+      </context>
+    </contexts>
+
+
+</configSections>
+  <connectionStrings>
+    <add name="WebshopContext" connectionString="Data Source=(LocalDb)\mssqllocaldb;Initial Catalog=WindesheimWebshop1;Integrated Security=SSPI;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+
+  http://www.dotnetawesome.com/2014/03/how-to-create-login-page-using-aspnet-mvc4.html
+http://stackoverflow.com/questions/14549975/error-message-does-not-appear-on-failed-login-using-asp-net-mvc-4-with-a-custom
+
+CODE FIRST DB, MIGRATIONS AND SUCH
+http://www.asp.net/web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
+http://frankouimette.com/add-webapi-existing-asp-net-mvc-project/
